@@ -3,6 +3,7 @@ package ch.zli.m335.baumbro_android.activities;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +21,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.CancellationTokenSource;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -42,6 +46,8 @@ public class MapActivity extends AppCompatActivity
     private AppDatabase db;
     List<Tree> trees;
     private RecyclerView recyclerView;
+
+    Button buttonReset;
 
     LocationUtilities locationUtility;
 
@@ -120,6 +126,32 @@ public class MapActivity extends AppCompatActivity
                     recyclerView.setAdapter(adapter);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude.get(), longitude.get()), zoomLevel));
                 });
+
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                TreeDao treeDao = db.treeDao();
+                Tree markerTree = treeDao.findByTreeNumber(marker.getSnippet());
+
+                List<Tree> filteredTrees = new ArrayList<>();
+
+                filteredTrees.add(markerTree);
+
+                TreeAdapter adapter = (TreeAdapter) recyclerView.getAdapter();
+                adapter.setTrees(filteredTrees);
+                adapter.notifyDataSetChanged();
+
+                return false;
+            }
+        });
+
+        buttonReset = findViewById(R.id.buttonReset);
+
+        buttonReset.setOnClickListener(v -> {
+            TreeAdapter adapter = (TreeAdapter) recyclerView.getAdapter();
+            adapter.setTrees(trees);
+            adapter.notifyDataSetChanged();
+        });
     }
 
     public List<Tree> getTrees(float longitude, float latitude){
@@ -134,10 +166,14 @@ public class MapActivity extends AppCompatActivity
     };
 
     public void setMarkers(List<Tree> trees, GoogleMap googleMap){
+        int iconResourceId = R.drawable.tree_icon;
+
         for (Tree tree : trees){
             MarkerOptions markerOptions = new MarkerOptions()
                     .position(new LatLng(tree.getLatitude(), tree.getLongitude()))
-                    .title(tree.getBaumnamedeu());
+                    .title(tree.getBaumnamedeu())
+                    .snippet(tree.getBaumnummer())
+                    .icon(BitmapDescriptorFactory.fromResource(iconResourceId));
 
             googleMap.addMarker(markerOptions);
         }

@@ -19,6 +19,11 @@ public interface TreeDao {
     Tree getFirst();
 
     @Query("SELECT * FROM trees\n" +
+            "WHERE baumnummer=:treeNumber\n" +
+            "LIMIT 1")
+    Tree findByTreeNumber(String treeNumber);
+
+    @Query("SELECT * FROM trees\n" +
             "WHERE ROUND(longitude, 1) = ROUND(:longitude, 1) \n" +
             "AND ROUND(latitude, 1) = ROUND(:latitude, 1)\n" +
             "LIMIT 1")

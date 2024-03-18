@@ -15,6 +15,7 @@ import java.util.List;
 
 import ch.zli.m335.baumbro_android.database.Tree;
 
+// https://medium.com/androiddevelopers/getting-to-know-recyclerview-ea14f8514e6
 public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
 
     private List<Tree> trees;
@@ -37,6 +38,11 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
         holder.treeNumber.setText(tree.getBaumnummer());
         holder.treeNameLatin.setText(tree.getBaumnamelat());
         holder.treeHeight.setText(tree.getBaumtyptext());
+    }
+
+    public void setTrees(List<Tree> trees) {
+        this.trees = trees;
+        notifyDataSetChanged();
     }
 
     @Override
