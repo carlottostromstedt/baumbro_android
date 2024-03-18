@@ -51,69 +51,25 @@ Aus Zeit- und Komplexitätsgründen, beschränken wir uns auf manuelle Tests und
 Die Tests werden auf einem emulierten Gerät im IDE Android Studio ausgeführt.
 
 #### Testumgebung
-| Gerät | Pixel 4 (emuliert) |
+| Eigenschaft | Technische Spezifikation |
 | --- | --- |
+| Gerät | Pixel 4 (emuliert) |
 | Bildschirmauflösung | 1020x2280 440dpi |
 | Android-Version | Android 14.0 arm64-v8a |
 | Entwicklungsumgebung | Android Studio Iguana | 2023.2.1 |
 
 #### Testfälle
 
-##### Testfall T-1
-| Titel | Knopf *Find a Tree* ruft Kartenasicht-View auf |
-| --- | --- |
-| ID | T-1 |
-| Voraussetzungen | App gestartet und Berechtigungen für Standort gegeben. |
-| Durchführung | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt. |
-| Erwartetes Resultat | Kartenansicht wird in einer zweiten View gezeigt. |
+| Titel                                        | ID   | Voraussetzungen                                             | Durchführung                                                                                         | Erwartetes Resultat                                                                                               |
+|----------------------------------------------|------|-------------------------------------------------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Knopf *Find a Tree* ruft Kartenasicht-View auf | T-1  | App gestartet und Berechtigungen für Standort gegeben.      | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt.                                      | Kartenansicht wird in einer zweiten View gezeigt.                                                                  |
+| Kartenansicht zeigt korrekter Standort an.  | T-2  | App gestartet, Berechtigungen für Standort gegeben.          | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt.                                      | Kartenansicht in der zweiten View zeigt mit einem Pin den korrekten Standort an.                                  |
+| Kartenansicht zeigt umliegende Bäume mit Pins. | T-3  | App gestartet, Berechtigungen für Standort gegeben.          | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt.                                      | Kartenansicht in der zweiten View zeigt umliegende Bäume mit Pins markiert.                                        |
+| Kartenansicht zeigt umliegende Bäume aufgelistet. | T-4  | App gestartet, Berechtigungen für Standort gegeben.          | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt.                                      | Unterhalb der Kartenansicht in der ersten View werden die umliegenden Bäume mit ihren Eigenschaften in einer Listenansicht angezeigt. |
+| Listeneinträge führen zu Show-Seite.       | T-5  | App gestartet, Berechtigungen für Standort gegeben, *Find a Tree*-Knopf geklickt. | Es wird auf einen Listeneintrag eines Baumes geklickt.                                               | Wir werden zu einer View geführt, die Details zum angeklickten Baum sowie einen "Schnappschuss"-Knopf anzeigt.     |
+| "Schnappschuss"-Knopf öffnet Kamera-App.   | T-6  | App gestartet, Berechtigungen für Standort gegeben, *Find a Tree*-Knopf geklickt, Listeneintrag eines Baumes geklickt. | Es wird auf den "Schnappschuss"-Knopf in der Show-View geklickt.                                      | Eine Kamera-Intent wird ausgeführt und die Kamera wird geöffnet.                                                  |
+| Schnappschuss wird in Galerie gezeigt.     | T-7  | App gestartet, Berechtigungen für Standort gegeben, *Find a Tree*-Knopf geklickt, Listeneintrag eines Baumes geklickt, "Schnappschuss"-Knopf geklickt. | Der Schnappschuss wird getätigt und das Bild akzeptiert.                                              | Der Schnappschuss wird in einer View in einer Galerieansicht für den ausgewählten Baum angezeigt.                 |
 
-##### Testfall T-2
-| Titel | Kartenansicht zeigt korrekter Standort an. |
-| --- | --- |
-| ID | T-2 |
-| Voraussetzungen | App gestartet, Berechtigungen für Standort gegeben. |
-| Durchführung | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt. |
-| Erwartetes Resultat | Kartenansicht in der zweiten View zeigt mit einem Pin den korrekten Standort an. |
-
-##### Testfall T-3
-| Titel | Kartenansicht zeigt umliegende Bäume mit Pins. |
-| --- | --- |
-| ID | T-3 |
-| Voraussetzungen | App gestartet, Berechtigungen für Standort gegeben. |
-| Durchführung | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt. |
-| Erwartetes Resultat | Kartenansicht in der zweiten View zeigt umliegende Bäume mit Pins markiert. |
-
-##### Testfall T-4
-| Titel | Kartenansicht zeigt umliegende Bäume aufgelistet. |
-| --- | --- |
-| ID | T-4 |
-| Voraussetzungen | App gestartet, Berechtigungen für Standort gegeben. |
-| Durchführung | Es wird auf den *Find a Tree*-Knopf in der ersten View geklickt. |
-| Erwartetes Resultat | Unterhalb der Kartenansicht in der ersten View werden die umliegenden Bäume mit ihren Eigenschaften in einer Listenansicht angezeigt. |
-
-##### Testfall T-5
-| Titel | Listeneinträge führen zu Show-Seite. |
-| --- | --- |
-| ID | T-5 |
-| Voraussetzungen | App gestartet, Berechtigungen für Standort gegeben, *Find a Tree*-Knopf geklickt. |
-| Durchführung | Es wird auf einen Listeneintrag eines Baumes geklickt. |
-| Erwartetes Resultat | Wir werden zu einer View geführt, die Details zum angeklickten Baum sowie einen "Schnappschuss"-Knopf anzeigt. |
-
-##### Testfall T-6
-| Titel | "Schnappschuss"-Knopf öffnet Kamera-App. |
-| --- | --- |
-| ID | T-6 |
-| Voraussetzungen | App gestartet, Berechtigungen für Standort gegeben, *Find a Tree*-Knopf geklickt, Listeneintrag eines Baumes geklickt. |
-| Durchführung | Es wird auf den "Schnappschuss"-Knopf in der Show-View geklickt. |
-| Erwartetes Resultat | Eine Kamera-Intent wird ausgeführt und die Kamera wird geöffnet. |
-
-##### Testfall T-7
-| Titel | Schnappschuss wird in Galerie gezeigt. |
-| --- | --- |
-| ID | T-7 |
-| Voraussetzungen | App gestartet, Berechtigungen für Standort gegeben, *Find a Tree*-Knopf geklickt, Listeneintrag eines Baumes geklickt, "Schnappschuss"-Knopf geklickt. |
-| Durchführung | Der Schnappschuss wird getätigt und das Bild akzeptiert. |
-| Erwartetes Resultat | Der Schnappschuss wird in einer View in einer Galerieansicht für den ausgewählten Baum angezeigt. |
 
 ### Systemaufbau
 
