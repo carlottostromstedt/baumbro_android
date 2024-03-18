@@ -1,6 +1,9 @@
 package ch.zli.m335.baumbro_android;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    Button buttonLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        buttonLocation = findViewById(R.id.buttonLocation);
     }
 }
