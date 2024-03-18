@@ -26,5 +26,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonLocation = findViewById(R.id.buttonLocation);
+
+        buttonLocation.setOnClickListener(v -> {
+            Intent resultAct = new Intent(MainActivity.this, MapActivity.class);
+            startActivity(resultAct);
+        });
     }
 }
