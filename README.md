@@ -43,7 +43,7 @@ Der Anwender dieser Applikation ist alltäglicher Anwender von Mobiltelefonen, a
 
 ### Anwendungsfalldiagramm
 
-![Anwendungsfalldiagramm](assets/usecase_diagram.png)
+![Anwendungsfalldiagramm](assets/usecase_diagramm.png)
 
 ### Testen
 
