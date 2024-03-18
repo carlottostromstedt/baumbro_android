@@ -10,6 +10,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import ch.zli.m335.baumbro_android.R;
+import ch.zli.m335.baumbro_android.adapters.TreeAdapter;
 import ch.zli.m335.baumbro_android.database.AppDatabase;
 import ch.zli.m335.baumbro_android.database.Tree;
 import ch.zli.m335.baumbro_android.database.TreeDao;
@@ -38,6 +41,7 @@ public class MapActivity extends AppCompatActivity
     private FusedLocationProviderClient fusedLocationClient;
     private AppDatabase db;
     List<Tree> trees;
+    private RecyclerView recyclerView;
 
     LocationUtilities locationUtility;
 
@@ -64,7 +68,8 @@ public class MapActivity extends AppCompatActivity
                     REQUEST_LOCATION_PERMISSION);
         }
 
-
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // initialize the location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -111,6 +116,8 @@ public class MapActivity extends AppCompatActivity
                     }
                     trees = getTrees(Float.valueOf(String.valueOf(longitude.get())), Float.valueOf(String.valueOf(latitude.get())));
                     setMarkers(trees, googleMap);
+                    TreeAdapter adapter = new TreeAdapter(trees);
+                    recyclerView.setAdapter(adapter);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude.get(), longitude.get()), zoomLevel));
                 });
     }
