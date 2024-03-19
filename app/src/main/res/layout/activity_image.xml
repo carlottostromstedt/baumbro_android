@@ -27,9 +27,15 @@
 
         <Button
             android:id="@+id/button_delete"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_delete" />
+            android:text="@string/button_delete"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:iconTint="@color/white"
+            app:strokeColor="@color/white"
+            app:strokeWidth="5dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

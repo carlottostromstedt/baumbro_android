@@ -30,17 +30,26 @@
                 android:text="@string/text_view_title"
                 android:textAlignment="center"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="275dp"
+                android:layout_marginBottom="30dp"
                 android:textColor="#FFFFFF"
                 android:textSize="60sp" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/icon_fitted" />
 
             <Button
                 android:id="@+id/buttonLocation"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/button_location"
                 android:textColor="@color/white"
+                android:textSize="20sp"
                 app:iconTint="@color/white"
                 app:strokeColor="@color/white"
                 app:strokeWidth="5dp" />
