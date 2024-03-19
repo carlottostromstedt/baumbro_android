@@ -1,6 +1,13 @@
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.gradleup.static-analysis") version "1.4"
+    id("checkstyle")
+}
+
+checkstyle{
+    toolVersion = "8.42"
+    configFile = file("${rootProject.projectDir}/config/checkstyle.xml")
 }
 
 android {
@@ -13,6 +20,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,6 +37,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    applicationVariants.all {
+        outputs.all {
+            val apkName = "baumbro.apk"
+        }
     }
 }
 

@@ -109,7 +109,7 @@ public class MapActivity extends AppCompatActivity
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cancellationTokenSource.getToken())
                 .addOnSuccessListener(this, location -> {
-                    // Got last known location. In some rare situations this can be null.
+                    // Got last known location. In some rare situations this can be null
                     if (location != null) {
                         latitude.set(location.getLatitude());
                         longitude.set(location.getLongitude());
@@ -149,8 +149,10 @@ public class MapActivity extends AppCompatActivity
 
         buttonReset.setOnClickListener(v -> {
             TreeAdapter adapter = (TreeAdapter) recyclerView.getAdapter();
-            adapter.setTrees(trees);
-            adapter.notifyDataSetChanged();
+            if (adapter != null){
+                adapter.setTrees(trees);
+                adapter.notifyDataSetChanged();
+            }
         });
     }
 
