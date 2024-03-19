@@ -2,6 +2,8 @@ package ch.zli.m335.baumbro_android.adapters;
 import ch.zli.m335.baumbro_android.R;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Collections;
 import java.util.List;
 
+import ch.zli.m335.baumbro_android.activities.MainActivity;
+import ch.zli.m335.baumbro_android.activities.MapActivity;
+import ch.zli.m335.baumbro_android.activities.TreeActivity;
+import ch.zli.m335.baumbro_android.database.AppDatabase;
 import ch.zli.m335.baumbro_android.database.Tree;
+import ch.zli.m335.baumbro_android.database.TreeDao;
 
 // https://medium.com/androiddevelopers/getting-to-know-recyclerview-ea14f8514e6
 public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
@@ -38,6 +45,7 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
         holder.treeNumber.setText(tree.getBaumnummer());
         holder.treeNameLatin.setText(tree.getBaumnamelat());
         holder.treeHeight.setText(tree.getBaumtyptext());
+        holder.itemView.setOnClickListener(holder);
     }
 
     public void setTrees(List<Tree> trees) {
@@ -50,8 +58,10 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
         return trees.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView treeName, treeNumber, treeNameLatin, treeHeight;
+
+        private AppDatabase db;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -59,6 +69,25 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> {
             treeNumber = itemView.findViewById(R.id.tree_number);
             treeNameLatin = itemView.findViewById(R.id.tree_name_latin);
             treeHeight= itemView.findViewById(R.id.tree_height);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Context context = v.getContext();
+
+            treeNumber = itemView.findViewById(R.id.tree_number);
+
+            db = AppDatabase.getInstance(v.getContext());
+            TreeDao treeDao = db.treeDao();
+            Tree clickedTree = treeDao.findByTreeNumber((String) treeNumber.getText());
+
+            Log.d("TreeAdapter", clickedTree.getBaumnamedeu());
+
+            MapActivity activity = (MapActivity) context;
+            Intent treeAct = new Intent(activity, TreeActivity.class);
+            treeAct.putExtra("treeNumber", treeNumber.getText());
+
+            activity.startActivity(treeAct);
         }
     }
 }
