@@ -3,4 +3,5 @@
     <string name="text_view_title">Baumbro</string>
     <string name="button_location">Find a Tree</string>
     <string name="button_reset">Reset Listing</string>
+    <string name="button_delete">Delete Image</string>
 </resources>

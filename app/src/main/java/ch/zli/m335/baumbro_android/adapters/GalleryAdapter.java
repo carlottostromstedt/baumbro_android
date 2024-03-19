@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Collections;
 import java.util.List;
 
+import ch.zli.m335.baumbro_android.activities.GalleryActivity;
+import ch.zli.m335.baumbro_android.activities.ImageActivity;
 import ch.zli.m335.baumbro_android.activities.MainActivity;
 import ch.zli.m335.baumbro_android.activities.MapActivity;
 import ch.zli.m335.baumbro_android.activities.TreeActivity;
@@ -52,7 +54,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         if (imagePaths != null && position < imagePaths.size()) {
             String path = imagePaths.get(position);
             holder.treeImage.setImageURI(Uri.parse(path));
-
+            holder.treeImage.setTag(path);
+            holder.itemView.setOnClickListener(holder);
         } else {
             Log.w("GalleryAdapter", "Invalid position or empty image list");
         }
@@ -68,13 +71,28 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         return imagePaths.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView treeImage;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             treeImage = itemView.findViewById(R.id.tree_image);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Context context = v.getContext();
+
+            treeImage = itemView.findViewById(R.id.tree_image);
+
+            String path = treeImage.getTag().toString();
+
+            GalleryActivity activity = (GalleryActivity) context;
+            Intent treeAct = new Intent(activity, ImageActivity.class);
+            treeAct.putExtra("imagePath", path);
+
+            activity.startActivity(treeAct);
         }
     }
 }

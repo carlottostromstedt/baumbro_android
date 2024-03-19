@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -113,6 +114,16 @@ public class GalleryActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        List<String> imagePaths = getPaths();
+        GalleryAdapter adapter = (GalleryAdapter) recyclerView.getAdapter();
+        adapter.setPaths(imagePaths);
+        adapter.notifyDataSetChanged();
+    }
+
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
@@ -172,6 +183,7 @@ public class GalleryActivity extends AppCompatActivity {
         GalleryAdapter adapter = (GalleryAdapter) recyclerView.getAdapter();
         adapter.setPaths(imagePaths);
         adapter.notifyDataSetChanged();
+        Toast.makeText(this, "Image saved successfully!", Toast.LENGTH_SHORT).show();
         return filePath;
     }
 
