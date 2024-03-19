@@ -33,7 +33,7 @@
 
                     <TextView
                         android:id="@+id/tree_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
@@ -43,7 +43,7 @@
 
                     <TextView
                         android:id="@+id/tree_name_latin"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
 
                     <TextView
                         android:id="@+id/tree_number"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_weight="1"
@@ -61,7 +61,7 @@
 
                     <TextView
                         android:id="@+id/tree_height"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="15dp"
@@ -75,7 +75,7 @@
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/gallery_button"
+                    android:id="@+id/image_button"
                     style="@android:style/Widget.Material.ImageButton"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
@@ -83,16 +83,16 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginVertical="5dp"
                     android:paddingHorizontal="10dp"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
+                    app:srcCompat="@android:drawable/ic_menu_camera" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <WebView
-            android:id="@+id/web_view"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
