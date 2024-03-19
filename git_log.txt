@@ -1,0 +1,17 @@
+Carl Otto Strömstedt, Tue Mar 19 16:12:08 2024 +0100: fix: gradle config
+Carl Otto Strömstedt, Tue Mar 19 14:55:58 2024 +0100: feat: gui improvements
+Carl Otto Strömstedt, Tue Mar 19 13:38:14 2024 +0100: feat: image show activity
+Carl Otto Strömstedt, Tue Mar 19 13:00:29 2024 +0100: feat: gallery activity and view
+Carl Otto Strömstedt, Tue Mar 19 09:07:50 2024 +0100: feat: tree detail activity
+Carl Otto Strömstedt, Tue Mar 19 00:09:39 2024 +0100: feat: filtered tree list
+Carl Otto Strömstedt, Mon Mar 18 18:32:09 2024 +0100: feat: recycler view of queried trees
+Carl Otto Strömstedt, Mon Mar 18 16:18:59 2024 +0100: feat: database and query setup
+Carl Otto Strömstedt, Mon Mar 18 11:27:30 2024 +0100: feat: map centers on device location
+Carl Otto Strömstedt, Mon Mar 18 10:29:15 2024 +0100: chore: comments
+Carl Otto Strömstedt, Mon Mar 18 10:26:03 2024 +0100: feat: map activity with basic google map
+Carl Otto Strömstedt, Mon Mar 18 09:42:00 2024 +0100: docs: redesign markdown tables
+Carl Otto Strömstedt, Mon Mar 18 09:38:07 2024 +0100: docs: figure path corrected
+Carl Otto Strömstedt, Mon Mar 18 09:36:39 2024 +0100: docs: add readme with documentation
+Carl Otto Strömstedt, Mon Mar 18 09:16:45 2024 +0100: feat: main activity with view
+Carl Otto Strömstedt, Mon Mar 18 08:22:51 2024 +0100: feat: project initialization
+carlottostromstedt, Mon Mar 18 08:09:41 2024 +0100: Initial commit
